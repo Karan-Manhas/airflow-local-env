@@ -53,7 +53,7 @@ def parse(soup):
 with DAG(
     "scrape_data",
     start_date=datetime(2024, 3, 22),
-    schedule_interval="daily",
+    schedule_interval=None,
     catchup=False
 ) as dag:
 
