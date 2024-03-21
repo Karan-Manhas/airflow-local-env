@@ -2,15 +2,6 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 
-with DAG("scrape_data", start_date=datetime(2024, 3, 22),
-         schedule_interval="daily", catchup=False) as dag:
-
-    # Task for data scraping
-    scrape_task = PythonOperator(
-        task_id="scrape_data_only",
-        python_callable=scrape_data
-    )
-
 def scrape_data():
     import requests
     from bs4 import BeautifulSoup
@@ -48,3 +39,12 @@ def parse(soup):
             "postage_cost": postageCost
         })
     return parsed_data
+
+with DAG("scrape_data", start_date=datetime(2024, 3, 22),
+         schedule_interval="daily", catchup=False) as dag:
+
+    # Task for data scraping
+    scrape_task = PythonOperator(
+        task_id="scrape_data_only",
+        python_callable=scrape_data
+    )
