@@ -62,3 +62,12 @@ with DAG(
         task_id="scrape_data_only",
         python_callable=scrape_data
     )
+
+    # Task to save data to CSV file
+    save_to_csv_task = PythonOperator(
+        task_id="save_to_csv",
+        python_callable=save_to_csv
+    )
+
+    # Set dependency: scrape_task should run before save_to_csv_task
+    scrape_task >> save_to_csv_task
