@@ -6,12 +6,9 @@ def scrape_data():
     import requests
     from bs4 import BeautifulSoup
 
-    scraped_data = []  # Initialize an empty list to store data
-
-    for index, page_number in enumerate (range(2, 12)):
-        url = f"https://www.ebay.co.uk/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=grade+10+pokemon+card&_sacat=0&LH_TitleDesc=0&rt=nc&_odkw=grade+10+pokemon+card&_osacat=0&LH_BIN=1&_ipg=240&_pgn={page_number}"  # Your original URL here
-        soup = get_data(url)
-        scraped_data.extend(parse(soup))  # Add parsed data from each page
+    url = "https://www.ebay.co.uk/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=grade+10+pokemon+card&_sacat=0&LH_TitleDesc=0&rt=nc&_odkw=grade+10+pokemon+card&_osacat=0&LH_BIN=1&_ipg=240&_pgn=2"  # URL for the first page only
+    soup = get_data(url)
+    scraped_data = parse(soup)  # Scrape data from the single page
 
     # You can now use the scraped_data list for further processing
     # (e.g., print it, store it in a file, pass it to another task)
@@ -40,6 +37,7 @@ def parse(soup):
         })
     return parsed_data
 
+# Define your DAG
 with DAG(
     "scrape_data",
     start_date=datetime(2024, 3, 22),
