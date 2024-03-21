@@ -18,7 +18,7 @@ def scrape_data():
     save_to_csv(scraped_data)
 
 def save_to_csv(data):
-    with open(r"C:\Users\Karan\DataEngineeringProject1\csv-files", "w", newline="", encoding="utf-8") as csvfile:
+    with open(r"C:\Users\Karan\DataEngineeringProject1\csv-files\data.csv", "w", newline="", encoding="utf-8") as csvfile:
         fieldnames = ["name", "price", "link", "postage_cost"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
