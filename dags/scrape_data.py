@@ -11,7 +11,6 @@ with DAG("scrape_data", start_date=datetime(2024, 3, 22),
         python_callable=scrape_data
     )
 
-
 def scrape_data():
     import requests
     from bs4 import BeautifulSoup
