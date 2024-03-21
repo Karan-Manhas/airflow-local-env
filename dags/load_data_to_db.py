@@ -3,7 +3,12 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 
 # Define connection details (replace with your actual credentials)
-MYSQL_CONN_ID = "mysql_conn"
+MYSQL_CONN_ID = {
+    'user': 'root',
+    'password': '$hjR7cnhfbn8KmDX',
+    'host': 'localhost',
+    'database': 'poke_data',
+}
 
 def load_data_to_mysql(scraped_data):
     """
