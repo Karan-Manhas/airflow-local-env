@@ -17,13 +17,13 @@ def scrape_data():
     # Save data to CSV file
     save_to_csv(scraped_data)
 
-def save_to_csv(data):
+def save_to_csv(scraped_data):
     with open(r"C:\Users\Karan\DataEngineeringProject1\csv-files\data.csv", "w", newline="", encoding="utf-8") as csvfile:
         fieldnames = ["name", "price", "link", "postage_cost"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         writer.writeheader()
-        for item in data:
+        for item in scraped_data:
             writer.writerow(item)
 
 # Get raw data function (unchanged)
