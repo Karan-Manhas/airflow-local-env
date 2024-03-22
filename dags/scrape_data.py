@@ -2,10 +2,10 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import csv
+import requests
+from bs4 import BeautifulSoup
 
 def scrape_data():
-    import requests
-    from bs4 import BeautifulSoup
 
     scraped_data = []  # Initialize an empty list to store data
 
