@@ -17,8 +17,7 @@ def scrape_data():
     # Save data to CSV file
     save_to_csv(scraped_data)
 
-def save_to_csv(*args, **kwargs):
-    scraped_data = kwargs['ti'].xcom_pull(task_ids='scrape_data_only')
+def save_to_csv(scraped_data):
     with open(r"C:\Users\Karan\DataEngineeringProject1\csv-files\data.csv", "w", newline="", encoding="utf-8") as csvfile:
         fieldnames = ["name", "price", "link", "postage_cost"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -67,8 +66,8 @@ with DAG(
     # Task to save data to CSV file
     save_to_csv_task = PythonOperator(
         task_id="save_to_csv",
-        python_callable=save_to_csv,
-        provide_context=True  # Provide task context to access XCom
+        python_callable=save_to_csv
+        op_args=[scrape_task.output]  # Pass the output of scrape_task to save_to_csv_task
     )
 
     # Set dependency: scrape_task should run before save_to_csv_task
