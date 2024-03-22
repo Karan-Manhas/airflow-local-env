@@ -67,7 +67,6 @@ with DAG(
     save_to_csv_task = PythonOperator(
         task_id="save_to_csv",
         python_callable=save_to_csv
-        op_args=[scrape_task.output]  # Pass the output of scrape_task to save_to_csv_task
     )
 
     # Set dependency: scrape_task should run before save_to_csv_task
