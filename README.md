@@ -22,14 +22,6 @@ In file secrets/variables.yaml you can add variables to be accessed in your DAGs
 
 In file secrets/connections.yaml you can add connections to be accessed in your DAGs.
 
-## User and password
-
-When the environment is ready, a user and password authentication will be prompted.
-By default, use these credentials:
-
-- user: airflow
-- pass: airflow
-
 ## Install dependencies
 
 You can add your custom dependencies in the requirements.txt, and install with the following command:
